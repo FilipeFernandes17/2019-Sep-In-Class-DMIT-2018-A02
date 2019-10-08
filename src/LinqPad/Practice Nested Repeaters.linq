@@ -1,11 +1,12 @@
 <Query Kind="Program">
   <Connection>
-    <ID>05a2444e-14ea-4451-ad3d-3398e9ff7898</ID>
+    <ID>bce7373a-cb15-4435-9906-9e5a8aa77ecd</ID>
+    <Persist>true</Persist>
     <Server>.</Server>
     <Database>WestWind</Database>
+    <ShowServer>true</ShowServer>
   </Connection>
 </Query>
-
 
 /*Supplier:
 	Company Name:
