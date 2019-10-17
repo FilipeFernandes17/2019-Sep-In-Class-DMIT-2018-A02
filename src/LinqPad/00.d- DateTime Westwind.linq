@@ -10,8 +10,10 @@
 
 //show only the orders for april, 2018
 from sale in Orders
-where sale.OrderDate.Value.Month == 4
-    && sale.OrderDate.Value.Year == 2018
+//where sale.OrderDate.Value.Month == 4
+//    && sale.OrderDate.Value.Year == 2018
+where sale.OrderDate > new DateTime(2018,04,01)
+    && sale.OrderDate < new DateTime(2018, 5, 1)
 select new 
 	{
 		Compamy = sale.Customer.CompanyName,
