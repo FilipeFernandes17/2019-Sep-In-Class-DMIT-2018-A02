@@ -6,9 +6,16 @@
   </Connection>
 </Query>
 
-DateTime start = new DateTime(2017,12,17).AddDays(-14);
+//5.Select all orders a picker has done on a particular week (Sunday through Saturday). Group and sorted by picker. Sort the orders by picked date. Hint: you will need to use the join operator.
+//Explore to see what the last pickedDate is, and what day of week it is
+
+DateTime start = new DateTime(2018,1,7)// Last date of a picked order, is sunday
+				.AddDays(-14);		   // Go two weeks earlier
 DateTime end = start.AddDays(7);
+var diff = end - start;
+diff.Dump("Time between two dates");
 var result = from sale in Orders
+			//we dont have a "between" operator in C#
 			 where sale.OrderDate >= start && sale.OrderDate < end
 			 orderby sale.PickedDate
 			 group sale by sale.PickerID into pickedOrders
