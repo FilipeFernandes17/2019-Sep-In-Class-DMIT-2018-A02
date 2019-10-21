@@ -55,13 +55,27 @@ select new
    
    
    
-//) List all the product names that contain the word "chef" in the name.
+//G) List all the product names that contain the word "chef" in the name.
+from item in Products
+where item.ProductName.Contains("chef")
+select item.ProductName
 
 
-
-//H) List all the discontinued products, specifying the product name and unit price.
-
+//H) List all the discontinued products, speci fying the product name and unit price.
+from item in Products
+where item.Discontinued
+select new 
+{
+	Name = item.ProductName,
+	Price = item.UnitPrice
+}
 
 
 //I) List the company names of all Suppliers in North America (Canada, USA, Mexico)
+from vendor in Suppliers
+where vendor.Address.Country == "Canada"
+	|| vendor.Address.Country == "USA"
+	|| vendor.Address.Country == "Mexico"
+select vendor.CompanyName
+
 
