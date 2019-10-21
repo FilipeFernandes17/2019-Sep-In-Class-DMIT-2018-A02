@@ -9,7 +9,6 @@
 </Query>
 
 // Practice questions - do each one in a separate LinqPad query.
-/*
 
 
 //A) List all the customer company names for those with more than 5 orders.
