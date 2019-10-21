@@ -25,15 +25,33 @@ from place in Territories
 select place.TerritoryDescription
 
 //D) List all the regions and the number of territories in each region
-
+from place in Regions
+select new 
+{
+	Region = place.RegionDescription,
+	TerritoryCount = place.Territories.Count()
+}
 
 
 //E) List all the region and territory names in a "flat" list
-
+from place in Territories 
+//where place.Region.RegionDescription.Contains("stern")
+select new
+{
+	Territory = place.TerritoryDescription, 
+	Region = place.Region.RegionDescription
+}
 
 
 //F) List all the region and territory names as an "object graph"
    //- use a nested query
+from place in Regions
+select new 
+{
+	Region = place.RegionDescription,
+	Territories = from area in place.Territories
+				  select area.TerritoryDescription
+}
    
    
    
