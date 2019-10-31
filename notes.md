@@ -44,8 +44,12 @@ https://www.techopedia.com/definition/15511/yak-shaving
 
 Open Visual Studio -> ASP.NET Web Application (.NET Framework) C# -> Webforms -> Authentication - change -> individual user accounts -> Create -> Properties -) in the project url take the s out of https -> save -> okay -> Click WebApp -> right click -> manage nuget packages ->update all nuget packages but bootstrap and AspNet.ScriptManager.bootstrap -> update -> agree -> restart -> open up sql management studio and create database -> edit the connection string in the Web.Config in visual studio to something like **connectionString="Data Source=.;Initial Catalog=Demo;Integrated Security=True" providerName="System.Data.SqlClient"**/> -> Ctrl F5 -> try and login -> open sql again -> view ->  Object Explorer Details -> highlight new tables -> delete
 
-
 <b>Customize your web app's identity<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configuration</b>
+
+right click tables in sql -> 
+<audio controls="controls">
+  <source type="audio/mp3" src="Shaving the yac.mp3"></source>
+</audio>
 
 
