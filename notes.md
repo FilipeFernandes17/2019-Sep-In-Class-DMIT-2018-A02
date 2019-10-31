@@ -47,9 +47,16 @@ Open Visual Studio -> ASP.NET Web Application (.NET Framework) C# -> Webforms ->
 <b>Customize your web app's identity<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configuration</b>
 
-right click tables in sql -> 
-<audio controls="controls">
-  <source type="audio/mp3" src="Shaving the yac.mp3"></source>
-</audio>
+right click tables in sql -> Shaving the yac.wav
+
+***
+
+**Date: October 31st, 2019**
+
+## Shaving the Yack Continued
+
+right click tables in sql -> Syc2.wav
+
+![](Note3.svg)
 
 
