@@ -22,25 +22,21 @@ namespace WebApp.Admin.Security
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            //To "seed" a database is to provide it with some initial data
-            //when the database is created
+            // To "seed" a database is to provide it with some initial data
+            // when the database is created.
 
             #region Seed the security roles
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            // The RoleManager<T> and RoleStore<T> are BLL classes that give flexibility 
-            // to the design/structure of how we're using Asp.Net Identity. 
+            // The RoleManager<T> and RoleStore<T> are BLL classes that give flexibility
+            // to the design/structure of how we're using Asp.Net Identity.
             // The IdentityRole is an Entity class that represents a security role.
 
-            foreach (var role in DefaultSecurityRoles)
-                roleManager.Create(new IdentityRole { });
-
-            //Hard-coded security roles (move later on)
-            //roleManager.Create(new IdentityRole { Name = "Administrators" });
-            //roleManager.Create(new IdentityRole { Name = "Registered Users" });
-           #endregion
+            foreach(var role in DefaultSecurityRoles)
+                roleManager.Create(new IdentityRole { Name = role });
+            #endregion
 
             #region Seed the users
-            //Create a user 
+            // Create a user
             var adminUser = new ApplicationUser
             {
                 UserName = AdminUserName,
@@ -48,19 +44,19 @@ namespace WebApp.Admin.Security
                 EmailConfirmed = true
             };
 
-            //Get the BLL user manager
+            // Get the BLL user manager
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-            // - The ApplicationUserManager is a BLL class in the IdenityConfig.cs file
+            // - The ApplicationUserManager is a BLL class in the IdentityConfig.cs file
             var result = userManager.Create(adminUser, AdminPassword);
             if(result.Succeeded)
             {
-                //Get the ID that was generated for the user we created/added
+                // Get the Id that was generated for the user we created/added
                 var found = userManager.FindByName(AdminUserName).Id;
                 // Add the user to the Administrators role
                 userManager.AddToRole(found, AdminRole);
             }
 
-            // Create the other user accounts for all the people in my demo database
+            // Create the other user accounts for all the people in my Demo database
             var demoManager = new DemoController();
             var people = demoManager.ListImportantPeople();
             foreach(var person in people)
@@ -70,7 +66,7 @@ namespace WebApp.Admin.Security
                     UserName = $"{person.FirstName}.{person.LastName}",
                     Email = $"{person.FirstName}.{person.LastName}@DemoIsland.com",
                     EmailConfirmed = true,
-                    PersonId  = person.PersonID
+                    PersonId = person.PersonID
                 };
                 result = userManager.Create(user, TempPassword);
                 if(result.Succeeded)
@@ -81,7 +77,7 @@ namespace WebApp.Admin.Security
             }
             #endregion
 
-            //Keep the call to the base class to do its seeding work
+            // Keep the call to the base class to do its seeding work
             base.Seed(context);
         }
     }

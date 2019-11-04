@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -6,9 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApp.Models;
-using System.Data.Entity;
 using WebApp.Admin.Security;
+using WebApp.Models;
 
 namespace WebApp.Models
 {
@@ -40,7 +40,7 @@ namespace WebApp.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            //Needs to have using system.data.entity;
+            // Needs to have using System.Data.Entity;
             Database.SetInitializer<ApplicationDbContext>(new SecurityDbContextInitializer());
         }
 
