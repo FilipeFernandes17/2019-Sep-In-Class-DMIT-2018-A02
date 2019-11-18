@@ -9,10 +9,11 @@ using WestWindSystem.DataModels;
 
 namespace WestWindSystem.BLL
 {
+    [DataObject]
     public class OrderProcessingController
     {
         #region Queries
-        [DatabjectMethod(DataObjectMethodType.Select)]]
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<OutstandingOrder> LoadOrders(int supplierId)
         {
             throw new NotImplementedException();
@@ -24,6 +25,7 @@ namespace WestWindSystem.BLL
             TODO: List table names*/
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<ShipperSelection> ListShippers()
         {
             using(var context = new WestWindContext())
