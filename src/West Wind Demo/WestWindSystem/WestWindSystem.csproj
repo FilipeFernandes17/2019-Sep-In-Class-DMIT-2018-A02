@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AboutController.cs" />
+    <Compile Include="BLL\DatabjectMethodAttribute.cs" />
     <Compile Include="BLL\OrderHistoryController.cs" />
     <Compile Include="BLL\OrderProcessingController.cs" />
     <Compile Include="BLL\ProductManagementController.cs" />
