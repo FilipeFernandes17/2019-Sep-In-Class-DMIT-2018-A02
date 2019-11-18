@@ -9,7 +9,7 @@ namespace WestWindSystem.DataModels
         public string ShipToName { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredBy { get; set; }
-        public TimeSpan DaysRemaining { get; } //TODO: Calculated
+        public TimeSpan DaysRemaining { get; } // TODO: Calculated
         public IEnumerable<OrderProductInformation> OutstandingItems { get; set; }
         public string FullShippingAddress { get; set; }
         public string Comments { get; set; }
