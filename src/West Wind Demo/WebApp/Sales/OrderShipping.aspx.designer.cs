@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.Sales
-{
-
-
-    public partial class OrderShipping
-    {
-
+namespace WebApp.Sales {
+    
+    
+    public partial class OrderShipping {
+        
         /// <summary>
         /// SupplierInfo control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace WebApp.Sales
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal SupplierInfo;
-
+        
         /// <summary>
         /// CurrentOrders control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace WebApp.Sales
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView CurrentOrders;
-
+        
         /// <summary>
         /// OrdersDataSource control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace WebApp.Sales
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource OrdersDataSource;
-
+        
         /// <summary>
         /// ShippersDataSource control.
         /// </summary>

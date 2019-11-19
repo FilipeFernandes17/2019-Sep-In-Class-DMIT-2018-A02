@@ -22,9 +22,7 @@ namespace WestWindSystem.BLL
                 //      - Make sure the supplier ID exists, otherwise throw exception
                 var supplier = context.Suppliers.Find(supplierId);
                 if (supplier == null)
-                {
-                    throw new Exception("unkown supplier");
-                }
+                    throw new Exception("Unknown supplier");
                 //      - [Advanced:] Make sure the logged-in user works for the identified supplier.
                 // Processing
                 var result = from ord in context.Orders
@@ -73,7 +71,7 @@ namespace WestWindSystem.BLL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<ShipperSelection> ListShippers()
         {
-            using (var context = new WestWindContext())
+            using(var context = new WestWindContext())
             {
                 var result = from shipper in context.Shippers
                              orderby shipper.CompanyName
