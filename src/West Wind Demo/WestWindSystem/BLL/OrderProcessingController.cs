@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WestWindSystem.DAL;
 using WestWindSystem.DataModels;
+using WestWindSystem.Entities;
 
 namespace WestWindSystem.BLL
 {
@@ -126,7 +127,33 @@ namespace WestWindSystem.BLL
                     Shipper must exist
                     Freight charge must either be null (no charge) or > $0.00
                 */
-                // TODO: Processing
+                // TODO: Processing the shipment
+                var ship = new Shipment
+                {
+                    OrderID = orderId,
+                    ShipVia = shipping.ShipperId,
+                    TrackingCode = shipping.TrackingCode,
+                    FreightCharge = shipping.FreightCharge.HasValue
+                                  ? shipping.FreightCharge.Value
+                                  : 0,
+                    ShippedDate = DateTime.Now
+                };
+                //2) add all manifest items
+                foreach(var item in products)
+                {
+                    ship.ManifestItems.Add(new ManifestItem
+                    {
+                        ProductID = item.ProductId,
+                        ShipQuantity = (short)item.ShipQuantity //TODO: change the datatype on ProductShipment.ShipQuantity
+                    });
+                }
+                //TODO: 3) Check if order is complete; if so, update order.Shipped
+
+                //4) Add Shipment to the database
+                context.Shipments.Add(ship);
+
+                //5) Save the changes as a single transaction
+                context.SaveChanges();
                 /*Processing (tables/data that must be updated/inserted/deleted/whatever)
                     Create new Shipment
                     Add all manifest items
