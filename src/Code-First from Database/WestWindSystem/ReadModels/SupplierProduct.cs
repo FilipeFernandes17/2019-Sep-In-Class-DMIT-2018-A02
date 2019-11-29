@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WestWindSystem.DataModels
+﻿namespace WestWindSystem.ReadModels
 {
     public class SupplierProduct
     {
@@ -13,5 +7,4 @@ namespace WestWindSystem.DataModels
         public decimal Price { get; set; }
         public string QtyPerUnit { get; set; }
     }
-
 }

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WestWindSystem.DAL;
-using WestWindSystem.DataModels;
+using WestWindSystem.ReadModels;
 
 namespace WestWindSystem.BLL
 {
+    [DataObject]
     public class SupplyChainManagement
     {
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<SupplierSummary> GetSupplierSummaries()
         {
-            using (var context = new WestWindContext())
+            using(var context = new WestWindContext())
             {
                 var result = from company in context.Suppliers
                              select new SupplierSummary
@@ -30,7 +33,6 @@ namespace WestWindSystem.BLL
                                             }
                              };
                 return result.ToList();
-
             }
         }
     }

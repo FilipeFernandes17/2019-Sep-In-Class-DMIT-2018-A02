@@ -75,8 +75,8 @@ namespace WebApp
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            securityAdmin.Visible = 
-                Request.IsAuthenticated
+            SecurityAdmin.Visible = 
+                Request.IsAuthenticated 
                 && Page.User.IsInRole(Settings.AdminRole);
         }
 

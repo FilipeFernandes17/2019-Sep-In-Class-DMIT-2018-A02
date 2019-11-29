@@ -3,8 +3,7 @@
     public class ProductShipment
     {
         public int ProductId { get; set; }
-
-        //TODO: change the datatype on ProductShipment.ShipQuantity
+        // TODO: Change the data type on ProductShipment.ShipQuantity to a short
         public int ShipQuantity { get; set; }
     }
 }

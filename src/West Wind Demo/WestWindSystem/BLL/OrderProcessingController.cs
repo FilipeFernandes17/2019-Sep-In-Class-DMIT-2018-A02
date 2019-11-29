@@ -93,41 +93,35 @@ namespace WestWindSystem.BLL
             {
                 // TODO: Validation:
                 var existingOrder = context.Orders.Find(orderId);
-                //A) OrderId must be valid
+                // a) OrderId must be valid
                 if (existingOrder == null)
                     throw new Exception("Order does not exist");
                 if (existingOrder.Shipped)
-                    throw new Exception("This Order has already been completed");
+                    throw new Exception("This order has already been completed");
                 if (!existingOrder.OrderDate.HasValue)
-                    throw new Exception("This order is not ready to be shipped (no order data has been specified)");
-                //B) products cannot be an empty list
-                if (existingOrder == null || !products.Any())
-                    throw new Exception("No Products identified for shipping");
-                //C) Products identified must be on the order
-                foreach (var item in products)
+                    throw new Exception("This order is not ready to be shipped (no order date has been specified)");
+                // b) Products cannot be an empty list
+                if (products == null || !products.Any())
+                    throw new Exception("No products identified for shipping");
+                // c) Products identified must be on the order
+                foreach(var item in products)
                 {
                     if (item == null) throw new Exception("Blank item listed in products to be shipped");
                     if (!existingOrder.OrderDetails.Any(x => x.ProductID == item.ProductId))
                         throw new Exception($"The product {item.ProductId} does not exist on the order");
-                    //TODO: D) Quantity must be greater than zero and less than or equal to the quantity outstanding
+                    // TODO: d) Quantity must be greater than zero and less than or equal to the quantity outstanding
                 }
-                if (shipping == null)
-                    throw new Exception("No shipping details provided");
+                // e)  Shipper must exist
+                if (shipping == null) throw new Exception("No shipping details provided");
                 var shipper = context.Shippers.Find(shipping.ShipperId);
-                if (shipper == null) throw new Exception("Invalid shipper id");
-                //E) Shipper must exist
+                if (shipper == null) throw new Exception("Invalid shipper Id");
+                // f) Freight charge must either be null (no charge) or > $0.00
+                // TODO: Q) Should I just convert a $0 charge to a null??
                 if (shipping.FreightCharge.HasValue && shipping.FreightCharge <= 0)
-                    throw new Exception("tive value or no charge.");
+                    throw new Exception("Freight charge must be either a positive value or no charge");
 
-                /*Validation:
-                    OrderId must be valid
-                    products cannot be an empty list
-                    Products identified must be on the order
-                    Quantity must be greater than zero and less than or equal to the quantity outstanding
-                    Shipper must exist
-                    Freight charge must either be null (no charge) or > $0.00
-                */
-                // TODO: Processing the shipment
+                // Processing the shipment
+                // 1) Create new Shipment
                 var ship = new Shipment
                 {
                     OrderID = orderId,
@@ -138,31 +132,25 @@ namespace WestWindSystem.BLL
                                   : 0,
                     ShippedDate = DateTime.Now
                 };
-                //2) add all manifest items
+                
+                // 2) Add all manifest items
                 foreach(var item in products)
                 {
                     ship.ManifestItems.Add(new ManifestItem
                     {
                         ProductID = item.ProductId,
-                        ShipQuantity = (short)item.ShipQuantity //TODO: change the datatype on ProductShipment.ShipQuantity
+                        ShipQuantity = (short)item.ShipQuantity
                     });
                 }
-                //TODO: 3) Check if order is complete; if so, update order.Shipped
+                
+                // TODO: Dan - 3) Check if order is complete; if so, update Order.Shipped
 
-                //4) Add Shipment to the database
+                // 4) Add the shipment to the database context
                 context.Shipments.Add(ship);
 
-                //5) Save the changes as a single transaction
+                // 5) Save the changes as a single transaction
                 context.SaveChanges();
-                /*Processing (tables/data that must be updated/inserted/deleted/whatever)
-                    Create new Shipment
-                    Add all manifest items
-                    Check if order is complete; if so, update Order.Shipped
-                 */
             }
-            throw new NotImplementedException();
-           
-            
         }
         #endregion
     }

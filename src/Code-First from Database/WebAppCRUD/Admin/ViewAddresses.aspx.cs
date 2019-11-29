@@ -16,8 +16,8 @@ namespace WebAppCRUD.Admin
 
         protected void CheckForExceptions(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            //Works for the OnInsert, OnUpdate, and OnDelete events of
-            //the ObjectDataSource control.
+            // Works for the OnInsert, OnUpdate, and OnDelete events of
+            // the ObjectDataSource control.
             MessageUserControl.HandleDataBoundException(e);
         }
     }

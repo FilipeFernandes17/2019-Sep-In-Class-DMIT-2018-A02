@@ -13,13 +13,13 @@ namespace WebApp {
     public partial class SiteMaster {
         
         /// <summary>
-        /// securityAdmin control.
+        /// SecurityAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl securityAdmin;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SecurityAdmin;
         
         /// <summary>
         /// MainContent control.
