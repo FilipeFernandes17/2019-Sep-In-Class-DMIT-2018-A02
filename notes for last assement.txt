@@ -1,0 +1,1 @@
+Learn DateTime and TimeSpan. When you subtract two datetimes and you get a timespan
